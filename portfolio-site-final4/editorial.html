@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editorial & Video — Tu Nombre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{padding-top:72px}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px 48px}
+  h1{font-size:clamp(28px,5vw,42px); text-transform:uppercase; letter-spacing:.08em; margin:0 0 22px}
+  .video-card{display:grid; grid-template-columns:1.2fr .8fr; gap:18px; align-items:center; margin-bottom:28px}
+  .thumb{border:1px solid var(--border); border-radius:16px; overflow:hidden; background:#121212}
+  .thumb img{width:100%; display:block}
+  .video-meta .btn.primary{display:inline-block; margin-top:10px}
+  .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px}
+  .tile{grid-column:span 4; background:#121212; border:1px solid var(--border); border-radius:16px; overflow:hidden; cursor:pointer}
+  .tile img{width:100%; height:280px; object-fit:cover; display:block}
+  .tile:hover{outline:2px solid var(--neon)}
+  @media (max-width:960px){ .video-card{grid-template-columns:1fr} .tile{grid-column:span 6} }
+  @media (max-width:640px){ .tile{grid-column:span 12} }
+  .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:100}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:92vw; max-height:90vh; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .close{position:fixed; top:16px; right:20px; background:var(--neon); color:#0b0b0b; padding:8px 12px; border-radius:999px; font-weight:900; cursor:pointer}
+  .topbar{position:fixed; top:0; left:0; right:0; height:60px; background:rgba(12,12,12,.8); backdrop-filter: blur(8px); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; padding:0 20px; z-index:50}
+  .topbar a{color:var(--fg); text-decoration:none; font-weight:800}
+  .topbar a:hover{color:var(--neon)}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html" target="_self">← Volver</a><div>Producción de video musical  — <span style="color:var(--neon)">Joaquin Vittar&nbsp;</span></div><div></div></div>
+<div class="wrap">
+  <h1>Producción de video musical</h1>
+
+  <!-- Video de YouTube: reemplaza VIDEO_ID -->
+  <div class="video-card">
+    <a class="thumb" id="ytLink" href="https://www.youtube.com/watch?v=wJvT4pqnus4&ab_channel=JoaquinFernandezVittar" target="_blank" rel="noopener">
+      <img id="ytThumb" src="(16) M3 int al discurso audiovisual - YouTube - Google Chrome 2_9_2025 12_42_16.png" alt="Miniatura del video">
+    </a>
+    <div class="video-meta">
+      <h3>Mia Frankel - Voy a abrirte la puerta</h3>
+      <p>Producción universitaria audiovisual de un video musical, en la que las seis personas del equipo participaron en todos los ámbitos para llegar al resultado deseado (montaje, luces, dirección de fotografía, arte, entre otros sectores).</p>
+      <a class="btn primary" href="https://www.youtube.com/watch?v=wJvT4pqnus4&ab_channel=JoaquinFernandezVittar" target="_blank" rel="noopener">Ver en YouTube</a>
+    </div>
+  </div>
+
+  <h3>Fotos relacionadas</h3>
+  <div class="grid">
+    <div class="tile"><img src="WhatsApp Image 2025-09-06 at 3.34.07 PM.jpeg" alt="Editorial 1"></div>
+    <div class="tile"><img src="WhatsApp Image 2025-09-06 at 3.34.07 PM (1).jpeg" alt="Editorial 2"></div>
+    <div class="tile"><img src="WhatsApp Image 2025-09-06 at 3.34.07 PM (2).jpeg" alt="Editorial 3"></div>
+    <div class="tile"><img src="esta1.jpg" alt="Editorial 4"></div>
+    <div class="tile"><img src="esta2.jpg" alt="Editorial 5"></div>
+    <div class="tile"><img src="esta3.jpg" alt="Editorial 6"></div>
+  </div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt="Vista"><div class="close" id="closeBtn">Cerrar</div></div>
+<script>
+const lb=document.getElementById('lightbox'), imgBig=document.getElementById('lightboxImg');
+document.querySelectorAll('.tile img').forEach(img=>{ img.addEventListener('click',()=>{ imgBig.src=img.src; lb.classList.add('open'); });});
+document.getElementById('closeBtn').addEventListener('click',()=>lb.classList.remove('open'));
+lb.addEventListener('click',(e)=>{ if(e.target===lb) lb.classList.remove('open'); });
+addEventListener('keydown',(e)=>{ if(e.key==='Escape') lb.classList.remove('open') });
+</script>
+</body></html>
